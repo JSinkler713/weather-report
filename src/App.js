@@ -33,11 +33,9 @@ class App extends Component {
       return (
         <div className="App">
           <header class='nav' >
-            <i class='logo'>Hello</i>
             <h1>
             Weather Report
             </h1>
-            <div class='links'> Links here </div>
           </header>
           <main className='main'>
           <form className='content'>
