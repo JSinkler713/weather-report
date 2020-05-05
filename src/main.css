@@ -58,6 +58,14 @@ li {
   background-color: rgba(255, 255, 255, 0.5);
   margin-bottom: 30px;
 }
+.img_container {
+  display: flex;
+  justify-content: center;
+}
+.img_container__icon {
+  display: block;
+  min-height: 80px;
+}
 @media screen and (max-width: 500px) {
   .content {
     width: 90vw;
