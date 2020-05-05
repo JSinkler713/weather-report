@@ -12,6 +12,7 @@ class App extends Component {
   state = {
     weatherLocation: '',
     weather: '',
+    weatherFiveDay: '',
   }
 
   fetchWeather = (e)=> {
@@ -30,9 +31,29 @@ class App extends Component {
       .catch(err=> console.log(err));
   }
 
+
+  fetchWeatherFiveDay = (e)=> {
+    e.preventDefault();
+    let string = this.state.weatherLocation
+    let zipCode = Number(string)
+    let url
+    if (isNaN(zipCode)) {
+      url = `https://api.openweathermap.org/data/2.5/forecast?q=${this.state.weatherLocation}&appid=${ApiKey}`
+    } else {
+      url = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode}&appid=${ApiKey}`
+    }
+    fetch(url)
+      .then(res=> res.json())
+      .then(data=> this.setState({ weatherFiveDay: data }))
+      .catch(err=> console.log(err));
+  }
+
+
   handleLocation = (e) => {
     this.setState({weatherLocation: e.target.value})
   }
+
+
 
   render(){
     if(!this.state.weather) {
