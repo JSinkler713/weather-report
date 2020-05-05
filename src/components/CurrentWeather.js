@@ -8,9 +8,20 @@ class CurrentWeather extends Component {
    let tempNow = (((this.props.weather.main.temp - 273.15) * 1.8) + 32).toFixed(1)
    let windGust = (this.props.weather.wind.gust * 2.23).toFixed(1);
    let windSpeed = (this.props.weather.wind.speed * 2.23).toFixed(1);
+   let iconCode = this.props.weather.weather[0].icon
+   let iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`
+   if (isNaN(windGust)) {
+     windGust = 0
+   }
+   if (isNaN(windSpeed)) {
+     windSpeed = 0
+   }
 
     return(
-      <div> 
+      <div>
+        <div className='img_container'>
+          <img className='img_container__icon' src={iconUrl} alt='current weather icon'/>
+        </div>
         <ul>
           <li>Place: {this.props.weather.name}</li>
           <li>Description: {this.props.weather.weather[0].description}</li>
