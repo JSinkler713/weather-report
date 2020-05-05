@@ -16,8 +16,14 @@ class App extends Component {
 
   fetchWeather = (e)=> {
     e.preventDefault();
-    console.log(`fetch weather from ${this.state.weatherLocation}`);
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.weatherLocation}&appid=${ApiKey}`
+    let string = this.state.weatherLocation
+    let zipCode = Number(string)
+    let url
+    if (isNaN(zipCode)) {
+      url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.weatherLocation}&appid=${ApiKey}`
+    } else {
+      url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${ApiKey}`
+    }
     fetch(url)
       .then(res=> res.json())
       .then(data=> this.setState({ weather: data }))
@@ -39,7 +45,7 @@ class App extends Component {
           </header>
           <main className='main'>
           <form className='content'>
-            <input onChange={this.handleLocation} placeholder='location'></input>
+            <input onChange={this.handleLocation} placeholder='city or zip'></input>
             <button onClick={this.fetchWeather}>Get weather</button>
           </form>
           </main>
