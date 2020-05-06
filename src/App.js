@@ -17,6 +17,7 @@ class App extends Component {
 
   fetchWeather = (e)=> {
     e.preventDefault();
+    let content = document.querySelector('input')
     let string = this.state.weatherLocation
     let zipCode = Number(string)
     let url
@@ -27,7 +28,14 @@ class App extends Component {
     }
     fetch(url)
       .then(res=> res.json())
-      .then(data=> this.setState({ weather: data }))
+      .then(data=> {
+        if (data.cod === 200) {
+          content.style.border = "none";
+          this.setState({ weather: data })
+        } else {
+          content.style.border = "2px solid red"
+          console.log("Can't find that location try again")
+        }})
       .catch(err=> console.log(err));
   }
 
@@ -78,11 +86,9 @@ class App extends Component {
 
       <div className="App">
         <header class='nav' >
-          <i class='logo'>Hello</i>
           <h1>
           Weather Report
           </h1>
-          <div class='links'> Links here </div>
         </header>
         <main className='main'>
           <div className='content'>
