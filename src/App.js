@@ -1,7 +1,9 @@
 import React, { Component } from 'react';  
 import logo from './logo.svg';
 import CurrentWeather from './components/CurrentWeather';
+import FiveDayWeather from './components/FiveDayWeather';
 import './main.css' 
+import data from './fiveDayData.js'
 
 const ApiKey = `${process.env.REACT_APP_API_KEY}`
 // use your own Api key here, or make a call to an express app to handle that on the backend
@@ -13,6 +15,7 @@ class App extends Component {
     weatherLocation: '',
     weather: '',
     weatherFiveDay: '',
+    loadedData: data,
   }
 
   fetchWeather = (e)=> {
@@ -42,6 +45,7 @@ class App extends Component {
 
   fetchWeatherFiveDay = (e)=> {
     e.preventDefault();
+    let content = document.querySelector('input')
     let string = this.state.weatherLocation
     let zipCode = Number(string)
     let url
@@ -52,7 +56,18 @@ class App extends Component {
     }
     fetch(url)
       .then(res=> res.json())
-      .then(data=> this.setState({ weatherFiveDay: data }))
+      .then(data=> {
+        if (data.cod === '200') {
+          content.style.border = "none";
+          console.log(data)
+          this.setState({ weatherFiveDay: data })
+          console.log( this.state.weatherFiveDay )
+          
+        } else {
+          content.style.border = "2px solid red"
+          console.log("Can't find that location try again")
+          console.log(data)
+        }})
       .catch(err=> console.log(err));
   }
 
@@ -64,7 +79,7 @@ class App extends Component {
 
 
   render(){
-    if(!this.state.weather) {
+    if(!this.state.weatherFiveDay) {
       return (
         <div className="App">
           <header class='nav' >
@@ -75,7 +90,7 @@ class App extends Component {
           <main className='main'>
           <form className='content'>
             <input onChange={this.handleLocation} placeholder='city or zip'></input>
-            <button onClick={this.fetchWeather}>Get weather</button>
+            <button onClick={this.fetchWeatherFiveDay}>Get weather</button>
           </form>
           </main>
               
@@ -94,11 +109,11 @@ class App extends Component {
           <div className='content'>
           <form>
             <input onChange={this.handleLocation} placeholder='location'></input>
-            <button onClick={this.fetchWeather}>Get weather</button>
+            <button onClick={this.fetchWeatherFiveDay}>Get weather</button>
           </form>
-          <CurrentWeather weather={this.state.weather} />
           </div>
           </main>
+          <FiveDayWeather list={this.state.weatherFiveDay.list} />
 
       </div>
     );
