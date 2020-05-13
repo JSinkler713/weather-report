@@ -71,4 +71,15 @@ li {
   .content {
     width: 90vw;
   }
+  input {
+    margin-top: 20px;
+    font-size: 25px;
+    width: 40vw;
+    text-align: center;
+  }
+  button {
+    margin-top: 20px;
+    font-size: 25px;
+    border-radius: 3px;
+  }
 }
