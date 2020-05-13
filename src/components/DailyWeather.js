@@ -3,20 +3,30 @@ import '../main.css'
 
 class DailyWeather extends Component {
   render(){  
-    day1 = this.props.weather.list.splice[0, 7]
-    day2 = this.props.weather.list.splice[8, 15]
-    day3 = this.props.weather.list.splice[16, 23]
-    day4 = this.props.weather.list.splice[24, 31]
-    day5 = this.props.weather.list.splice[32, 39]
-
-    console.log(day1);
-    
+    let temps = this.props.weather.map((period)=> {
+      return period.main.temp
+    })
+    let high = temps.reduce((a,b)=> Math.max(a,b))
+    let low = temps.reduce((a,b)=> Math.min(a,b))
+    let sum = 0;
+    temps.forEach(temp=> sum+=temp)
+    let avg = sum / 8;
+    console.log(`the high is: ${high}`)
+    console.log(`the low is: ${low}`)
+    console.log(`the avg is ${avg}`)
+    let date = this.props.weather[0].dt_txt.split(" ")
     return(
       <div> 
+        <ul>
+          <li>Date: {date[0]}</li>
+          <li>High: {high}</li>
+          <li>Low: {low}</li>
+          <li>Average Temp: {avg}</li>
+        </ul>
       </div>
     )
   }
 }
 
-export default CurrentWeather;
+export default DailyWeather;
 
