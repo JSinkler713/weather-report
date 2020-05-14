@@ -5,7 +5,7 @@ import '../main.css'
 class FiveDayWeather extends Component {
   render(){  
     return(
-      <div> 
+      <div className='FiveDayWeather' > 
         <DailyWeather weather={this.props.list.slice(0,8)} />
         <DailyWeather weather={this.props.list.slice(8, 16)} />
         <DailyWeather weather={this.props.list.slice(16, 24)} />
