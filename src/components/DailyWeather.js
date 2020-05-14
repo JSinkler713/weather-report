@@ -48,6 +48,7 @@ class DailyWeather extends Component {
       }
     }
     frequentIcon = frequentIcon.slice(0,2) + 'd'
+    let iconUrl = `https://openweathermap.org/img/w/${frequentIcon}.png`
      
     console.log(frequentDescription);
     
@@ -68,7 +69,7 @@ class DailyWeather extends Component {
     return(
       <div className='DailyWeather'> 
         <ul>
-          <li>Icon: {frequentIcon}</li>
+          <li>Icon: <img className='img_container__icon' src={iconUrl} alt='daily weather icon'/></li>
           <li>Date: {date[0]}</li>
           <li>High: {high}</li>
           <li>Low: {low}</li>
