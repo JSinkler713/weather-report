@@ -3,13 +3,6 @@ import '../main.css'
 
 class DailyWeather extends Component {
   render(){  
-    
-   
-    // TODO currently first appearing icon, change to most frequent
-    // let iconCode = this.props.weather.weather[0].icon
-    // let iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`
-    
-
     // Also need to get most occuring description
     // And most occuring icon
     let description;
@@ -68,8 +61,8 @@ class DailyWeather extends Component {
     let date = this.props.weather[0].dt_txt.split(" ")
     return(
       <div className='DailyWeather'> 
+        <img className='img_container__icon' src={iconUrl} alt='daily weather icon'/>
         <ul>
-          <li>Icon: <img className='img_container__icon' src={iconUrl} alt='daily weather icon'/></li>
           <li>Date: {date[0]}</li>
           <li>High: {high}</li>
           <li>Low: {low}</li>
