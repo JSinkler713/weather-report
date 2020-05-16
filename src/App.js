@@ -70,6 +70,12 @@ class App extends Component {
         }})
       .catch(err=> console.log(err));
   }
+  
+  fetchBoth = (e)=> {
+    e.preventDefault()
+    this.fetchWeather(e);
+    this.fetchWeatherFiveDay(e);
+  }
 
 
   handleLocation = (e) => {
@@ -90,7 +96,7 @@ class App extends Component {
           <main className='main'>
           <form className='content'>
             <input onChange={this.handleLocation} placeholder='city or zip'></input>
-            <button onClick={this.fetchWeatherFiveDay}>Get weather</button>
+            <button onClick={this.fetchBoth}>Get weather</button>
           </form>
           </main>
               
@@ -109,8 +115,9 @@ class App extends Component {
           <div className='content'>
           <form>
             <input onChange={this.handleLocation} placeholder='location'></input>
-            <button onClick={this.fetchWeatherFiveDay}>Get weather</button>
+            <button onClick={this.fetchBoth}>Get weather</button>
           </form>
+            <CurrentWeather weather={this.state.weather} />
           </div>
           </main>
           <FiveDayWeather list={this.state.weatherFiveDay.list} />
