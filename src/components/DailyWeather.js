@@ -63,11 +63,10 @@ class DailyWeather extends Component {
       <div className='DailyWeather'> 
         <img className='img_container__icon' src={iconUrl} alt='daily weather icon'/>
         <ul>
-          <li>Date: {date[0]}</li>
-          <li>High: {high}</li>
-          <li>Low: {low}</li>
-          <li>Average Temp: {avg}</li>
-          <li>Description: {frequentDescription}</li>
+          <li>{date[0]}</li>
+          <li>{frequentDescription}</li>
+          <li>Low      |    High</li>
+          <li>{low}    |   {high}</li>
         </ul>
       </div>
     )
