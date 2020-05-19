@@ -88,7 +88,7 @@ class App extends Component {
     if(!this.state.weatherFiveDay) {
       return (
         <div className="App">
-          <header class='nav' >
+          <header className='nav' >
             <h1>
             Weather Report
             </h1>

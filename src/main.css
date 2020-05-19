@@ -116,3 +116,29 @@ li {
     min-width: 96vw;
   }
 }
+.button {
+  height: 100px;
+  border: none;
+  font-size: 65px;
+  font-weight: 800;
+  position: absolute;
+  font-family: 'Nanum Myeongjo', serif;
+}
+.button:hover {
+  background: rgba( 0, 0, 0, .05);
+}
+.button-left {
+  bottom: 200px;
+  left:50px;
+}
+.button-right {
+  bottom: 200px;
+  right: 50px;
+}
+.hidden {
+  display: none;
+}
+.muted {
+  color: rgba(0, 0, 0, 0.1);
+  blur: 0.4;
+}
