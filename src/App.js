@@ -7,7 +7,7 @@ import data from './fiveDayData.js'
 
 const ApiKey = `${process.env.REACT_APP_API_KEY}`
 // use your own Api key here, or make a call to an express app to handle that on the backend
-
+console.log(ApiKey);
 
 
 class App extends Component {
