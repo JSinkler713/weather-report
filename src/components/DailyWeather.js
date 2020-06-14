@@ -3,7 +3,7 @@ import '../main.css'
 
 class DailyWeather extends Component {
   render(){  
-    // Also need to get most occuring description
+    // Need to get most occuring description
     // And most occuring icon
     let description;
     let icon;
@@ -14,6 +14,7 @@ class DailyWeather extends Component {
     let frequentIcon;
     let frequentDescription;
     
+    // get most frequents loop
     for (let i=0; i < 8; i++) {
       description = this.props.weather[i].weather[0].description;
       icon = this.props.weather[i].weather[0].icon
@@ -40,6 +41,8 @@ class DailyWeather extends Component {
         frequentDescription = description;
       }
     }
+
+    // get the url from most frequent icon to display
     frequentIcon = frequentIcon.slice(0,2) + 'd'
     let iconUrl = `https://openweathermap.org/img/w/${frequentIcon}.png`
      
@@ -57,12 +60,19 @@ class DailyWeather extends Component {
     temps.forEach(temp=> sum+=temp)
     let avg = sum / 8;
     avg = (((avg - 273.15) * 1.8) + 32).toFixed(1)
-    let date = this.props.weather[0].dt_txt.split(" ")
+
+    // deal with day of the week
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    let date = this.props.weather[0].dt_txt
+    let dayOfWeek = new Date(date)
+    let dayNumber = dayOfWeek.getDay()
+    let day = days[dayNumber]
+    
     return(
       <div className='DailyWeather'> 
         <img className='img_container__icon' src={iconUrl} alt='daily weather icon'/>
         <ul>
-          <li>{date[0]}</li>
+          <li>{ day }</li>
           <li>{frequentDescription}</li>
           <li>Low      |    High</li>
           <li>{low}    |   {high}</li>

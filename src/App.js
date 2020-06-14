@@ -102,7 +102,7 @@ class App extends Component {
     return (
 
       <div className="App">
-        <header class='nav' >
+        <header className='nav' >
           <h1>
           Weather Report
           </h1>
