@@ -43,7 +43,6 @@ class DailyWeather extends Component {
     frequentIcon = frequentIcon.slice(0,2) + 'd'
     let iconUrl = `https://openweathermap.org/img/w/${frequentIcon}.png`
      
-    console.log(frequentDescription);
     
     // get the high and low temperatures
     let temps = this.props.weather.map((period)=> {

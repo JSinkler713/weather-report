@@ -7,7 +7,6 @@ import data from './fiveDayData.js'
 
 const ApiKey = `${process.env.REACT_APP_API_KEY}`
 // use your own Api key here, or make a call to an express app to handle that on the backend
-console.log(ApiKey);
 
 
 class App extends Component {
@@ -59,14 +58,11 @@ class App extends Component {
       .then(data=> {
         if (data.cod === '200') {
           content.style.border = "none";
-          console.log(data)
           this.setState({ weatherFiveDay: data })
-          console.log( this.state.weatherFiveDay )
           
         } else {
           content.style.border = "2px solid red"
           console.log("Can't find that location try again")
-          console.log(data)
         }})
       .catch(err=> console.log(err));
   }
