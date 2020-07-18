@@ -65,7 +65,10 @@ li {
 }
 .img_container__icon {
   display: block;
-  min-height: 80px;
+  min-height: 120px;
+}
+.main .content .img_container__icon {
+  min-height: 200px;
 }
 .FiveDayWeather {
   display: flex;
